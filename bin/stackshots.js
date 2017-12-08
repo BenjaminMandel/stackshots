@@ -28,6 +28,14 @@ var argv = optimist
   .default('s', 'windows_7')
   .alias('d','device')
   .describe('d', 'The device(s) from which you want to get screenshots. Comma separated list')
+  //resolutions
+  .alias('wr','winres')
+  .describe('wr', 'windows resolution')
+  .default('wr', '1280x1024')
+  .alias('mr','macres')
+  .describe('mr', 'macos resolution')
+  .default('mr', '1920x1080')  
+  ///resolutions
   .alias('f', 'folder')
   .describe('f', 'Folder in which screenshots will be stored')
   .default('f', process.cwd())
@@ -41,7 +49,7 @@ var argv = optimist
   .describe('h', 'Shows help info')
   .check(function(argv){
     if (orientations.indexOf(argv.orientation) === -1){
-      throw new Error('Orientation has to bee one of this values ' + orientations.join('|'));
+      throw new Error('Orientation has to be one of this values ' + orientations.join('|'));
     }
   })
   .argv;
@@ -94,6 +102,8 @@ var client = new browserscreenshot({
             var request = {
               url : url,
               orientation : argv.orientation,
+              win_res : argv.wr,
+              mac_res : argv.mr,
               browsers : browsers,
               tunnel: argv.tunnel
             };
