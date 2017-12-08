@@ -102,8 +102,8 @@ var client = new browserscreenshot({
             var request = {
               url : url,
               orientation : argv.orientation,
-              win_res : argv.wr,
-              mac_res : argv.mr,
+              win_res : argv.winres,
+              mac_res : argv.macres,
               browsers : browsers,
               tunnel: argv.tunnel
             };
